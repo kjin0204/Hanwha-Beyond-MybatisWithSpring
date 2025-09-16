@@ -1,4 +1,4 @@
-# db? url? url ?? ? ??? ???? ?? ????.
+# DB URL을 spring에서 인식 할 수 있도록 jdbc-url -> url로 변경
 spring:
   datasource:
     #    driver-class-name: org.mariadb.jdbc.Driver

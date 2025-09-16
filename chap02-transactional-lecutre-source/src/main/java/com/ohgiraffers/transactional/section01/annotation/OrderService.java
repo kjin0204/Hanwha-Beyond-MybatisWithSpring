@@ -2,6 +2,7 @@ package com.ohgiraffers.transactional.section01.annotation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static org.springframework.transaction.annotation.Propagation.REQUIRED;
 
 @Service
 public class OrderService {
@@ -62,6 +65,7 @@ public class OrderService {
      *             처음 트랜젝션이 같은 테이블을 다시 읽으면 자신이 처음 읽었을 때와 달리 새로 추가 된 로우가 있을 것이다.
      *             이것을 허상 읽기라고 한다. (재현 불가능한 값 읽기와 유사하지만 허상 읽기는 여러 로우가 추가되는 경우를 말한다.)
      */
+//    @Transactional(propagation = REQUIRED, isolation = Isolation.READ_UNCOMMITTED, rollbackFor = Exception.class)
     @Transactional
     public void regisNewOrder(OrderDTO orderInfo) {
         /* 설명. 1. 주문한 메뉴들의 코드만 추출(DTO에서) */
